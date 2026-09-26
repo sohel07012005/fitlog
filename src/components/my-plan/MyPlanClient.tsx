@@ -25,7 +25,9 @@ const MyPlanClient = () => {
     "plan",
   );
 
-  const [sortBy, setSortBy] = useState<"duration" | "rating">("duration");
+  const [sortBy, setSortBy] = useState<
+    "default" | "duration" | "rating"
+  >("default");
 
   const [completedWorkouts, setCompletedWorkouts] = useState<number[]>([]);
 
@@ -132,10 +134,13 @@ const MyPlanClient = () => {
             <select
               value={sortBy}
               onChange={(e) =>
-                setSortBy(e.target.value as "duration" | "rating")
+                setSortBy(
+                  e.target.value as "default" | "duration" | "rating",
+                )
               }
               className="appearance-none rounded-lg border border-[#303641] bg-[#15181f] py-2.5 pl-4 pr-10 text-sm font-medium text-gray-200 outline-none transition hover:border-[#4a515d] sm:text-base"
             >
+              <option value="default">Default</option>
               <option value="duration">Duration</option>
               <option value="rating">Rating</option>
             </select>
