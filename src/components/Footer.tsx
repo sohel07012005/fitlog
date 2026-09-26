@@ -1,12 +1,11 @@
-import React from "react";
 import Image from "next/image";
-import logo from "../assets/logo.png";
+import logo from "@/assets/logo.png";
 import { LuCopyright } from "react-icons/lu";
 
 const Footer = () => {
   return (
     <footer className="bg-black text-white border-t border-[#444445]">
-      <div className="container mx-auto px-4 py-5">
+      <div className="container mx-auto py-5">
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
 

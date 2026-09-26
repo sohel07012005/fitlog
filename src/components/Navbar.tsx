@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import logo from "../assets/logo.png";
+import logo from "@/assets/logo.png";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-black border-b border-[#444445] sticky top-0 z-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
 
         <div className="h-16 flex items-center justify-between">
 
