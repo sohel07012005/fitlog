@@ -73,7 +73,7 @@ const WorkoutCard = ({
           </div>
         </div>
 
-        <div className="flex w-full items-center justify-center gap-2 sm:w-auto sm:min-w-[360px] sm:justify-center sm:gap-4">
+        <div className="flex w-full items-center justify-center gap-2 sm:w-auto sm:min-w-90 sm:justify-center sm:gap-4">
           {!isSaved && (
             <button
               type="button"
