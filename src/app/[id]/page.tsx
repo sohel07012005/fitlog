@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 
 
 const getWorkoutById = async (id: string): Promise<Workout | null> => {
-  const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`, {
+  const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`, {
     cache: "no-store",
   });
 

@@ -1,21 +1,14 @@
-import React from 'react';
+import MyPlanClient from "@/components/my-plan/MyPlanClient";
 
-const page = () => {
-    return (
-        <div className="bg-black text-white py-10">
-            <div className="container mx-auto px-4 sm:px-0">
-                <h1 className='text-4xl font-bold'>MY PLAN</h1>
-                <p className='mt-2 text-gray-400'>
-                    Cap of five lifts for today. Finish them, then load more.
-                </p>
-                
 
-            </div>
-         
-
-          
-        </div>
-    );
+const MyPlanPage = () => {
+  return (
+    <main className="min-h-screen bg-black px-4 py-8 text-white sm:px-6 lg:px-10">
+      <div className="container mx-auto">
+        <MyPlanClient />
+      </div>
+    </main>
+  );
 };
 
-export default page;
+export default MyPlanPage;
