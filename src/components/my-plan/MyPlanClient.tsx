@@ -25,17 +25,17 @@ const MyPlanClient = () => {
     "plan",
   );
 
-  const [sortBy, setSortBy] = useState<
-    "default" | "duration" | "rating"
-  >("default");
+  const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">(
+    "duration",
+  );
 
   const [completedWorkouts, setCompletedWorkouts] = useState<number[]>([]);
 
   const selectedWorkouts =
     selectedSection === "plan" ? plan : savedWorkouts;
 
-  const getDurationNumber = (duration: string | number) => {
-    return Number.parseFloat(String(duration)) || 0;
+  const getNumber = (value: string | number) => {
+    return Number.parseFloat(String(value)) || 0;
   };
 
   const sortedWorkouts = useMemo(() => {
@@ -43,13 +43,19 @@ const MyPlanClient = () => {
 
     if (sortBy === "duration") {
       workouts.sort(
+        (a, b) => getNumber(b.duration) - getNumber(a.duration),
+      );
+    }
+
+    if (sortBy === "calories") {
+      workouts.sort(
         (a, b) =>
-          getDurationNumber(b.duration) - getDurationNumber(a.duration),
+          getNumber(b.caloriesBurned) - getNumber(a.caloriesBurned),
       );
     }
 
     if (sortBy === "rating") {
-      workouts.sort((a, b) => b.rating - a.rating);
+      workouts.sort((a, b) => getNumber(b.rating) - getNumber(a.rating));
     }
 
     return workouts;
@@ -127,7 +133,7 @@ const MyPlanClient = () => {
 
         <div className="flex items-center gap-3">
           <span className="text-sm text-gray-500 sm:text-base">
-            Sort by
+            Sort By
           </span>
 
           <div className="relative">
@@ -135,13 +141,13 @@ const MyPlanClient = () => {
               value={sortBy}
               onChange={(e) =>
                 setSortBy(
-                  e.target.value as "default" | "duration" | "rating",
+                  e.target.value as "duration" | "calories" | "rating",
                 )
               }
               className="appearance-none rounded-lg border border-[#303641] bg-[#15181f] py-2.5 pl-4 pr-10 text-sm font-medium text-gray-200 outline-none transition hover:border-[#4a515d] sm:text-base"
             >
-              <option value="default">Default</option>
               <option value="duration">Duration</option>
+              <option value="calories">Calories</option>
               <option value="rating">Rating</option>
             </select>
 
