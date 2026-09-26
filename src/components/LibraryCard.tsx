@@ -1,11 +1,13 @@
 import Workout from "@/types/workoutType";
 import Image from "next/image";
+import Link from "next/link";
 import { FiClock, FiStar } from "react-icons/fi";
 import { GiWeightLiftingUp } from "react-icons/gi";
 
 const LibraryCard = ({ workout }: { workout: Workout }) => {
   return (
-    <div className="mx-2 sm:mx-0 overflow-hidden rounded-2xl border border-[#292d35] bg-[#15181e] text-white transition-all duration-300 hover:border-[#C2F800] hover:shadow-[0_0_20px_rgba(194,248,0,0.15)] cursor-pointer">      <div className="relative h-80 w-full">
+    <Link href={`/${workout.id}`}>
+    <div  className="mx-2 sm:mx-0 overflow-hidden rounded-2xl border border-[#292d35] bg-[#15181e] text-white transition-all duration-300 hover:border-[#C2F800] hover:shadow-[0_0_20px_rgba(194,248,0,0.15)] cursor-pointer">      <div className="relative h-80 w-full">
         <Image
           src={workout.image}
           alt={workout.name}
@@ -46,7 +48,8 @@ const LibraryCard = ({ workout }: { workout: Workout }) => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Link>
   );
 };
 

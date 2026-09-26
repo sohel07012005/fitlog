@@ -23,8 +23,7 @@ const data = await getData();
   return (
     <div className="bg-black text-white">
    <div className="container mx-auto my-6 md:my-10 flex flex-col md:flex-row items-center justify-between bg-[#222630] rounded-lg p-6 sm:p-8 md:p-12 lg:p-15 gap-10 md:gap-6 overflow-hidden">
-  
-  {/* Left Content */}
+
   <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 w-full md:w-1/2">
     
     <p className="font-bold text-[#C2F800] text-sm sm:text-base">
@@ -50,7 +49,7 @@ const data = await getData();
     </a>
   </div>
 
-  {/* Right Image */}
+
   <div className="w-full md:w-1/2 flex justify-center md:justify-end">
     <Image
       src={banner}

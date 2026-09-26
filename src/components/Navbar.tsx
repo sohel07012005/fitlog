@@ -1,23 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
+import Workout from "@/types/workoutType";
+import { WorkoutContext } from "@/context/WorkoutContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const { plan, savedWorkouts } = useContext(WorkoutContext) as {
+    plan: Workout[];
+    savedWorkouts: Workout[];
+  };
 
   return (
     <nav className="bg-black border-b border-[#444445] sticky top-0 z-50">
       <div className="container mx-auto">
-
         <div className="h-16 flex items-center justify-between">
-
-          {/* LEFT SIDE */}
           <div className="flex items-center gap-3">
-
-            {/* Hamburger - Mobile Only */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden text-white p-2 hover:bg-[#222] rounded-md"
@@ -47,92 +51,91 @@ const Navbar = () => {
               </svg>
             </button>
 
-            {/* Logo */}
             <Link
               href="/"
               className="flex items-center gap-2 text-white font-bold text-xl"
             >
-              <Image
-                src={logo}
-                alt="FITLOG Logo"
-                width={30}
-                height={30}
-              />
+              <Image src={logo} alt="FITLOG Logo" width={30} height={30} />
 
               <span>FITLOG</span>
             </Link>
           </div>
 
-
-          {/* CENTER NAVIGATION - Desktop */}
-          <div className="hidden lg:flex items-center gap-6">
-
+          <div className="hidden lg:flex items-center gap-6 font-medium">
             <Link
               href="/"
-              className="text-gray-300 hover:text-white transition"
+              className={`transition ${
+                pathname === "/"
+                  ? "text-[#c2f800]"
+                  : "text-gray-300 hover:text-white"
+              }`}
             >
               Workouts
             </Link>
 
             <Link
-              href="/My-plan"
-              className="text-gray-300 hover:text-white transition"
+              href="/my-plan"
+              className={`transition ${
+                pathname === "/my-plan"
+                  ? "text-[#c2f800]"
+                  : "text-gray-300 hover:text-white"
+              }`}
             >
               My Plan
             </Link>
-
           </div>
 
-
-          {/* RIGHT SIDE */}
           <div className="flex items-center gap-2">
-
             <Link
-              href="/plan"
-              className="text-gray-300 hover:text-white px-3 py-2 transition"
+              href="/my-plan"
+              className="flex items-center gap-2 px-3 py-2 text-gray-300 transition hover:text-white"
             >
-              Plan
-            </Link>
+              <span>Plan</span>
 
+              <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-[#c2f800] px-1.5 text-xs font-bold text-black">
+                {plan.length}
+              </span>
+            </Link>
             <Link
-              href="/saved"
-              className="text-gray-300 hover:text-white px-3 py-2 transition"
+              href="/my-plan"
+              className="flex items-center gap-2 px-3 py-2 text-gray-300 transition hover:text-white"
             >
-              Saved
-            </Link>
+              <span>Saved</span>
 
+              <span className="flex h-6 min-w-6 items-center justify-center rounded-full border border-gray-500 px-1 text-xs font-semibold text-gray-300">
+                {savedWorkouts.length}
+              </span>
+            </Link>
           </div>
-
         </div>
 
-
-        {/* MOBILE MENU */}
         {isMenuOpen && (
           <div className="lg:hidden border-t border-[#333] py-3">
-
             <div className="flex flex-col">
-
               <Link
                 href="/"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-gray-300 hover:text-white hover:bg-[#1a1a1a] px-3 py-3 rounded-md transition"
+                className={`transition ${
+                  pathname === "/"
+                    ? "text-[#c2f800]"
+                    : "text-gray-300 hover:text-white"
+                }`}
               >
                 Workouts
               </Link>
 
               <Link
-                href="/My-plan"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-gray-300 hover:text-white hover:bg-[#1a1a1a] px-3 py-3 rounded-md transition"
+                href="/my-plan"
+                className={`transition ${
+                  pathname === "/my-plan"
+                    ? "text-[#c2f800]"
+                    : "text-gray-300 hover:text-white"
+                }`}
               >
                 My Plan
               </Link>
-
             </div>
-
           </div>
         )}
-
       </div>
     </nav>
   );
